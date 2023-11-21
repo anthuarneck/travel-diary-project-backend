@@ -1,25 +1,28 @@
 const express = require("express");
+const memories = express.Router({ mergeParams: true });
 const {
-  getMemoryByUserAndDestination,
+  getMemoriesByDestination,
   deleteMemoryForUser,
   createMemory,
 } = require("../queries/memories");
+const { getOneDestination } = require("../queries/destinations");
 
-const memories = express.Router({ mergeParams: true });
 
-memories.get("/:userId/:destinationId", async (req, res) => {
-  const { userId, destinationId } = req.params;
-  const memoryByUserAndDestination = await getMemoryByUserAndDestination(
-    userId,
-    destinationId
-  );
-  res.json(memoryByUserAndDestination);
+memories.get("/", async (req, res) => {
+  const { destinationId } = req.params;
+  try {
+    const destination = await getOneDestination(destinationId);
+    const memoriesByDestination = await getMemoriesByDestination(destinationId);
+    res.json({ ...destination, memoriesByDestination });
+  } catch (error) {
+    res.json(error);
+  }
 });
 
-memories.post("/:userId/:destinationId", async (req, res) => {
+memories.post("/", async (req, res) => {
   try {
-    const { destinationId, userId } = req.params;
-    const createdMemory = await createMemory(destinationId, userId);
+    const { destinationId } = req.params;
+    const createdMemory = await createMemory(destinationId, req.body);
     if (createdMemory) {
       res.status(200).json({ success: true, payload: { data: createdMemory } });
     }

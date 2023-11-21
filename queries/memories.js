@@ -1,16 +1,17 @@
 const db = require("../db/dbConfig");
 
-const getMemoryByUserAndDestination = async (userId, destinationId) => {
-    try {
-      const memory = await db.any(
-        "SELECT memories.id, memories.rating, memories.cost, memories.review, memories.experiences, memories.date, travel_users.username, destinations.destination_name, destinations.image_url FROM memories JOIN travel_users ON travel_users.id = memories.travel_user_id JOIN destinations ON destinations.id = memories.destination_id WHERE memories.travel_user_id = $1 AND destinations.id = $2",
-        [userId, destinationId]
-      );
-      return memory;
-    } catch (error) {
-      console.error(error);
-    }
-  };
+const getMemoriesByDestination = async (destinationId) => {
+  try {
+    const memories = await db.any(
+      "SELECT memories.id, memories.rating, memories.cost, memories.review, memories.experiences, memories.date, travel_users.username, destinations.destination_name, destinations.image_url FROM memories JOIN travel_users ON travel_users.id = memories.travel_user_id JOIN destinations ON destinations.id = memories.destination_id WHERE destinations.id = $1",
+      destinationId
+    );
+    return memories;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
   
 
 const createMemory = async (travel_user_id, destination_id) => {
@@ -38,7 +39,7 @@ const deleteMemoryForUser = async (travel_user_id, destination_id) => {
 };
 
 module.exports = {
-    getMemoryByUserAndDestination,
+    getMemoriesByDestination,
     createMemory,
     deleteMemoryForUser
 }

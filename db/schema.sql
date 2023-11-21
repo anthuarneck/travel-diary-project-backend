@@ -15,12 +15,12 @@ CREATE TABLE travel_users (
 CREATE TABLE destinations (
     id SERIAL PRIMARY KEY,
     destination_name TEXT NOT NULL,
-    image_url TEXT,
+    image_url TEXT
 )
 
 CREATE TABLE memories (
     id SERIAL PRIMARY KEY,
-    rating INTEGER CHECK (score >= 0 AND score <= 5),
+    rating INTEGER CHECK (rating >= 0 AND rating <= 5),
     cost DECIMAL NOT NULL,
     review TEXT,
     experiences TEXT,

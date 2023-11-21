@@ -7,7 +7,11 @@ const {
   deleteDestination,
 } = require("../queries/destinations.js");
 
+const memoriesController = require("./memoriesController.js")
+
 const destinations = express.Router({ mergeParams: true });
+
+destinations.use("/:destinationId/memories", memoriesController)
 
 destinations.get("/", async (req, res) => {
   const allDestinations = await getAllDestinations();

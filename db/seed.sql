@@ -12,6 +12,6 @@ VALUES
 
 INSERT INTO memories (rating, cost, review, experiences, date, travel_user_id, destination_id)
 VALUES
-(5, 4700, 'Love the culture & scenery', 'Aug 8th 2023', 1, 1),
-(5, 1500, 'Gorgeous!!', 'May 17th 2022', 1, 2),
-(4, 3800, 'Amazing place for history buffs like me!', 'July 23rd 2023', 1, 3);
+(5, 4700, 'Love the culture & scenery', 'Visited Mt. Fuji, Explored Tokyo & Kyoto', 'Aug 8th 2023', 1, 1),
+(5, 1500, 'Gorgeous!!', 'Went surfing, trekked volcano', 'May 17th 2022', 1, 2),
+(4, 3800, 'Amazing place for history buffs like me!', 'Explored the Colosseum', 'July 23rd 2023', 1, 3);

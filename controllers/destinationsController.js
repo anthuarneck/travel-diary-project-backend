@@ -24,7 +24,7 @@ destinations.get("/:index", async (req, res) => {
   if (oneDestination) {
     res.json(oneDestination);
   } else {
-    res.status(404).jsosn({ error: "Not Found" });
+    res.status(404).json({ error: "Not Found" });
   }
 });
 

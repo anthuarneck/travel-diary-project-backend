@@ -16,7 +16,7 @@ CREATE TABLE destinations (
     id SERIAL PRIMARY KEY,
     destination_name TEXT NOT NULL,
     image_url TEXT
-)
+);
 
 CREATE TABLE memories (
     id SERIAL PRIMARY KEY,
@@ -28,4 +28,4 @@ CREATE TABLE memories (
     travel_user_id INTEGER REFERENCES travel_users (id) ON DELETE CASCADE,
     destination_id INTEGER REFERENCES destinations (id) ON DELETE CASCADE,
     UNIQUE (travel_user_id, destination_id)
-)
+);

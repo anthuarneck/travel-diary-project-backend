@@ -26,6 +26,5 @@ CREATE TABLE memories (
     experiences TEXT,
     date TEXT, 
     travel_user_id INTEGER REFERENCES travel_users (id) ON DELETE CASCADE,
-    destination_id INTEGER REFERENCES destinations (id) ON DELETE CASCADE,
-    UNIQUE (travel_user_id, destination_id)
+    destination_id INTEGER REFERENCES destinations (id) ON DELETE CASCADE
 );

@@ -16,7 +16,7 @@ destinations.use("/:destinationId/memories", memoriesController)
 destinations.get("/", async (req, res) => {
   const allDestinations = await getAllDestinations();
   if (allDestinations[0]) {
-    res.status(200).json({ success: true, data: { payload: allDestinations } });
+    res.status(200).json(allDestinations);
   } else {
     res.status(500).json({ success: false, data: { error: "Server Error" } });
   }
@@ -48,7 +48,7 @@ destinations.delete("/:id", async (req, res) => {
     if (deletedDestination) {
       res
         .status(200)
-        .json({ success: true, payload: { data: deletedDestination } });
+        .json(deletedDestination);
     }
   } catch (error) {
     res.send(error);
@@ -58,7 +58,7 @@ destinations.delete("/:id", async (req, res) => {
 destinations.put("/:id", async (req, res) => {
   const { id } = req.params;
   const updatedDestination = await updateDestination(id, req.body);
-  if (updatedDestination.id) {
+  if (updatedDestination) {
     res.status(200).json(updatedDestination);
   } else {
     res.status(404).json("No Destination found with that ID");

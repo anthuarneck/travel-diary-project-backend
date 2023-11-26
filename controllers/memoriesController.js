@@ -14,7 +14,7 @@ memories.get("/", async (req, res) => {
   try {
     const destination = await getOneDestination(destinationId);
     const memoriesByDestination = await getMemoriesByDestination(destinationId);
-    res.json({ ...destination, memoriesByDestination });
+    res.json( memoriesByDestination );
   } catch (error) {
     res.json(error);
   }
@@ -29,7 +29,7 @@ memories.get("/:memoryId", async (req, res) => {
       memoryId
     );
     if (destination && oneMemoryByDestination) {
-      res.json({ ...destination, oneMemoryByDestination });
+      res.json(oneMemoryByDestination);
     } else {
       res.status(404).json({ message: "Destination or memory not found" });
     }

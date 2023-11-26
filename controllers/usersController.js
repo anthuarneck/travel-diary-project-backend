@@ -1,5 +1,5 @@
 const express = require("express");
-const bcrypt = require("bcryptjs");
+var bcrypt = require("bcryptjs");
 const {
   getOneUserByUsername,
   createUser,
@@ -40,7 +40,7 @@ users.post("/", async (req, res) => {
     if (user) {
       const isMatch = await bcrypt.compare(password, user.password);
       if (isMatch) {
-        res.json({ message: "Login successful", user });
+        res.json(user);
       } else {
         res.status(401).json({ error: "Invalid credentials" });
       }

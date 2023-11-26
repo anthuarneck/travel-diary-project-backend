@@ -50,8 +50,9 @@ const updateDestination = async (id, destination) => {
 const deleteDestination = async (id) => {
   try {
     const deletedDestination = await db.one(
-      "DELETE FROM destinations WHERE id=$1 RETURNING *"
+      "DELETE FROM destinations WHERE id=$1 RETURNING *", id
     );
+    return deletedDestination
   } catch (error) {
     console.error(error);
   }
